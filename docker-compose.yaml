@@ -1,0 +1,58 @@
+services:
+  api:
+    build: ./api
+    container_name: symphony_api
+    env_file: 
+      - .env
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+    volumes:
+      - shared_data:/data
+    networks:
+      - symphony_network
+
+  db:
+    build: ./db
+    container_name: symphony_db
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - symphony_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: symphony_pgadmin
+    env_file:
+      - .env
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    networks:
+      - symphony_network
+
+  collector:
+    build: ./collector
+    container_name: symphony_collector
+    env_file:
+      - .env
+    volumes:
+      - shared_data:/data
+    networks:
+      - symphony_network
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  shared_data:
+  
+networks:
+  symphony_network:
+    driver: bridge

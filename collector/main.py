@@ -1,0 +1,1 @@
+print("Collector had been started")
