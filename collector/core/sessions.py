@@ -1,0 +1,3 @@
+class BethovenSession():
+    def __init__(self):
+        ...
