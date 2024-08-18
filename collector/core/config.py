@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Config:
     # Construct the SQLALCHEMY_DATABASE_URI dynamically from environment variables
@@ -16,5 +19,8 @@ class Config:
 
     # Custom configuration settings
     SOURCE_URL = "https://www.bethowen.ru/"
+
+    # Proxy solver api key
+    AZCAPTCHA_API_KEY = os.getenv('AZCAPTCHA_API_KEY', 'your_api_key')
 
 config = Config()

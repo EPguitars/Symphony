@@ -26,10 +26,9 @@ class BethovenCollector:
         main_url = self.config.SOURCE_URL
         scraper = BethovenScraper(main_url)
         main_page = scraper.scrape_main_page()
-        
+
 
 if __name__ == "__main__":
-    time.sleep(2)
     setup_logging()
     collector = BethovenCollector()
     collector.collect()
