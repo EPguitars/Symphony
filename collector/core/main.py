@@ -25,7 +25,8 @@ class BethovenCollector:
         print("Collecting data")
         main_url = self.config.SOURCE_URL
         scraper = BethovenScraper(main_url)
-        main_page = scraper.scrape_main_page()
+        proxy = next(scraper.proxies)
+        main_page = scraper.scrape_main_page(proxy)
 
 
 if __name__ == "__main__":
