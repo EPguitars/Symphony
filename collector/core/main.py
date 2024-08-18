@@ -1,3 +1,5 @@
+import os
+import time
 import logging
 
 from rich.logging import RichHandler
@@ -7,7 +9,7 @@ from scraper import BethovenScraper
 
 def setup_logging():
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.DEBUG,
         format="%(message)s",
         datefmt="[%X]",
         handlers=[RichHandler(rich_tracebacks=True)]
@@ -20,5 +22,14 @@ class BethovenCollector:
         self.logger = logging.getLogger("beethoven")
 
     def collect(self):
-        main_url = self.config["source_url"]
+        print("Collecting data")
+        main_url = self.config.SOURCE_URL
         scraper = BethovenScraper(main_url)
+        main_page = scraper.scrape_main_page()
+        
+
+if __name__ == "__main__":
+    time.sleep(2)
+    setup_logging()
+    collector = BethovenCollector()
+    collector.collect()

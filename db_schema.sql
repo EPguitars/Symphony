@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS public.proxies (
+    id SERIAL PRIMARY KEY,
+    proxy VARCHAR(100) NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE
+);
